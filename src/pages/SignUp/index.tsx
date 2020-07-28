@@ -1,36 +1,40 @@
 import React from 'react';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
-
+import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
+import { Form } from '@unform/web'; 
 import logoImg from '../../assets/logo.svg';
 
 import Input from '../../components/Input'; 
 import Button from '../../components/Button'; 
 
 import { Container, Content, Background } from './styles';
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
+
+    function handleSubmit(data:object): void{
+        console.log(data); 
+    }
+
     return (
         <Container>
+            <Background />
             <Content>
                 <img src={logoImg} alt="GoBarber"></img>
-                <form>
-                    <h1>Faça seu logon</h1>
+                <Form  onSubmit={handleSubmit}>
+                    <h1>Faça seu cadastro</h1>
 
+                    <Input name="name" icon={FiUser} type="text" placeholder="Nome" autoComplete="off"></Input>
                     <Input name="email" icon={FiMail} type="text" placeholder="E-mail" autoComplete="off"></Input>
                     <Input name="password" icon={FiLock} type="password" placeholder="Senha" autoComplete="off"></Input>
 
-                    <Button type="submit">Entrar</Button>
-
-                    <a href="forgot">Esqueci minha senha</a>
-                </form>
+                    <Button type="submit">Cadastrar</Button>
+                </Form>
 
                 <a href="">
-                    <FiLogIn />
-                    Criar conta
+                    <FiArrowLeft />
+                    Voltar para logon
                 </a>
             </Content>
-            <Background />
         </Container>
     );
 };
 
-export default SignIn;
+export default SignUp;
